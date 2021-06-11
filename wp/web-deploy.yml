@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: wp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wp
+  template:
+    metadata:
+      labels:
+        app: wp
+    spec:
+      containers:
+      - name: wp
+        image: wordpress
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: mysqldb
+        - name: WORDPRESS_DB_USER
+          value: exampleuser
+        - name: WORDPRESS_DB_PASSWORD
+          value: examplepass
+        - name: WORDPRESS_DB_NAME
+          value: exampledb
+        ports:
+        - containerPort: 80

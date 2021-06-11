@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  tls:
+  - hosts:
+    - wp.zzizily.com
+    secretName: wp-secret
+  rules:
+  - host: wp.zzizily.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-lb
+          servicePort: 80

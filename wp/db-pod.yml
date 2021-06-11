@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysqldb
+spec:
+  containers:
+  - image: mysql:5.7
+    name:  mysqldb
+    env:
+    - name: MYSQL_DATABASE
+      value: exampledb
+    - name: MYSQL_USER
+      value: exampleuser
+    - name: MYSQL_PASSWORD
+      value: examplepass
+    - name: MYSQL_RANDOM_ROOT_PASSWORD
+      value: '1'
+    ports:
+    - containerPort: 3306
+      protocol: TCP
