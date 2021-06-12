@@ -3,9 +3,17 @@ kind: Pod
 metadata:
   name: mysqldb
 spec:
+  # volumes:
+  #   - name: mysql-data
+  #     gcePersistentDisk:
+  #       pdName: mysql
+  #       fsType: ext4
   containers:
   - image: mysql:5.7
     name:  mysqldb
+    # volumeMounts:
+    # -  name: mysql-data
+    #    mountPath: /var/lib/mysql
     env:
     - name: MYSQL_DATABASE
       value: exampledb
@@ -18,3 +26,5 @@ spec:
     ports:
     - containerPort: 3306
       protocol: TCP
+
+# gcloud compute disks create --size=10GiB --zone asia-northeast3-c  mysql
